@@ -8,13 +8,11 @@ public class Formula1Team {
     private Car car;
     private Driver driver;
     private List<Mechanic> mechanics;
-    private List<Part> parts;
     private List<TeamMember> teamMembers;
 
     public Formula1Team(String name) {
         this.name = name;
         mechanics = new ArrayList<>();
-        parts = new ArrayList<>();
         teamMembers = new ArrayList<>();
     }
 
@@ -54,17 +52,6 @@ public class Formula1Team {
         mechanics.remove(mechanic);
     }
 
-    public List<Part> getParts() {
-        return parts;
-    }
-
-    public void addPart(Part part) {
-        parts.add(part);
-    }
-
-    public void removePart(Part part) {
-        parts.remove(part);
-    }
 
     public List<TeamMember> getTeamMembers() {
         return teamMembers;
