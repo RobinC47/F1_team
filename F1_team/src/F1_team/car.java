@@ -22,28 +22,28 @@ public class car {
 	        this.number = number;
 	    }
 
-	    public ArrayList<PieceVoiture> getPieces() {
-	        return pieces;
+	    public ArrayList<part> getParts() {
+	        return parts;
 	    }
 
-	    public void setPieces(ArrayList<PieceVoiture> pieces) {
-	        this.pieces = pieces;
+	    public void setPieces(ArrayList<part> parts) {
+	        this.parts = parts;
 	    }
 
-	    public void ajouterPiece(PieceVoiture piece) {
-	        this.pieces.add(piece);
+	    public void addParts(part parts) {
+	        this.parts.add(parts);
 	    }
 
-	    public ArrayList<Mecanicien> getMecaniciens() {
-	        return mecaniciens;
+	    public ArrayList<employee> getMecanics() {
+	        return mecanics;
 	    }
 
-	    public void setMecaniciens(ArrayList<Mecanicien> mecaniciens) {
-	        this.mecaniciens = mecaniciens;
+	    public void setMecanics(ArrayList<employee> mecanics) {
+	        this.mecanics = mecanics;
 	    }
 
-	    public void ajouterMecanicien(Mecanicien mecanicien) {
-	        this.mecaniciens.add(mecanicien);
+	    public void ajouterMecanic(employee mecanics) {
+	        this.mecanics.add(mecanics);
 	    }
 	}
 
