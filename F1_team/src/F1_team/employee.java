@@ -1,12 +1,13 @@
-public class Mechanician {
+package F1_team;
+public class employee {
     private String name;
     private String position;
-    private int car;
+    private int salary;
 
-    public Mechanician(String name, String position, int car) {
+    public employee(String name, String position, int salary) {
         this.name = name;
         this.position = position;
-        this.car = car;
+        this.salary = salary;
     }
 
     public String getName() {
@@ -25,11 +26,12 @@ public class Mechanician {
         this.position = position;
     }
 
-    public int getCar() {
-        return car;
+    public int getSalary() {
+        return salary;
     }
 
-    public void setCar(int car) {
-        this.car = car;
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
+
 }
