@@ -4,7 +4,7 @@ import F1_team.*;
 
 public class main {
 
-		public static void main(String[] args) {
+		public main(String[] args) {
 			Formula1Team Mercedes = new Formula1Team("Mercedes");
 			Formula1TeamController controller = new Formula1TeamController(Mercedes);
 	        controller.setFormula1TeamName("Mercedes-AMG Petronas Formula One Team");

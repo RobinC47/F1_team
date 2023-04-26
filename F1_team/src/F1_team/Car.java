@@ -1,8 +1,5 @@
 package F1_team;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Car {
     private Engine engine;
     private Tires tires;
