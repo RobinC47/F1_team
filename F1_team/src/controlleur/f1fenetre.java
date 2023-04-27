@@ -10,6 +10,9 @@ import javax.swing.JLayeredPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -19,19 +22,31 @@ import javax.swing.JToggleButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextPane;
 
+import F1_team.*;
+import vue.*;
+
 public class f1fenetre extends JFrame {
-	private JTextField textField;
+	Formula1Team ferrari;
+	Driver driver1;
+	Mechanic mechanic1;
+	Mechanic mechanic2;
+	Tires tires1;
+	Engine engine1;
+	Body body1;
+	TeamMember teammember1;
+	TeamMember teammember2;
+	
+	
+	
+	private JTextField textFieldMecanics;
 	private JTextField textFieldNameDriver;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
 	private JTextField textFieldNameMember;
+	private JTextField textFieldTeam;
+	private JTextField textFieldSpeciality;
+	private JTextField textFieldType;
+	private JTextField textFieldManufacturer;
 	private JTextField textFieldRoleMember;
+	private JTextField textFieldMaterial;
 
 	/**
 	 * Launch the application.
@@ -63,20 +78,20 @@ public class f1fenetre extends JFrame {
 		tabbedPane.addTab("Team", null, panelTeam, null);
 		panelTeam.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(225, 352, 130, 26);
-		panelTeam.add(textField);
-		textField.setColumns(10);
+		textFieldMecanics = new JTextField();
+		textFieldMecanics.setBounds(225, 352, 130, 26);
+		panelTeam.add(textFieldMecanics);
+		textFieldMecanics.setColumns(10);
 		
 		textFieldNameDriver = new JTextField();
 		textFieldNameDriver.setBounds(225, 273, 130, 26);
 		panelTeam.add(textFieldNameDriver);
 		textFieldNameDriver.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(130, 36, 130, 26);
-		panelTeam.add(textField_3);
-		textField_3.setColumns(10);
+		textFieldTeam = new JTextField();
+		textFieldTeam.setBounds(130, 36, 130, 26);
+		panelTeam.add(textFieldTeam);
+		textFieldTeam.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("F1 Team");
 		lblNewLabel.setBounds(21, 11, 106, 16);
@@ -90,10 +105,10 @@ public class f1fenetre extends JFrame {
 		lblNewLabel_2.setBounds(21, 325, 73, 16);
 		panelTeam.add(lblNewLabel_2);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(514, 352, 130, 26);
-		panelTeam.add(textField_4);
-		textField_4.setColumns(10);
+		textFieldSpeciality = new JTextField();
+		textFieldSpeciality.setBounds(514, 352, 130, 26);
+		panelTeam.add(textFieldSpeciality);
+		textFieldSpeciality.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Age");
 		lblNewLabel_4.setBounds(441, 278, 61, 16);
@@ -107,10 +122,6 @@ public class f1fenetre extends JFrame {
 		lblNewLabel_5_1.setBounds(418, 357, 61, 16);
 		panelTeam.add(lblNewLabel_5_1);
 		
-		JButton btnSaveMecanics = new JButton("Save");
-		btnSaveMecanics.setBounds(21, 352, 83, 29);
-		panelTeam.add(btnSaveMecanics);
-		
 		JLabel lblNewLabel_3 = new JLabel("Team member");
 		lblNewLabel_3.setBounds(21, 92, 106, 16);
 		panelTeam.add(lblNewLabel_3);
@@ -119,17 +130,9 @@ public class f1fenetre extends JFrame {
 		lblNewLabel_5_2.setBounds(152, 278, 61, 16);
 		panelTeam.add(lblNewLabel_5_2);
 		
-		JButton btnSaveDriver = new JButton("Save");
-		btnSaveDriver.setBounds(21, 273, 83, 29);
-		panelTeam.add(btnSaveDriver);
-		
 		JLabel lblNewLabel_8 = new JLabel("Name");
 		lblNewLabel_8.setBounds(44, 41, 61, 16);
 		panelTeam.add(lblNewLabel_8);
-		
-		JButton btnSaveDriver_1 = new JButton("Save");
-		btnSaveDriver_1.setBounds(523, 36, 83, 29);
-		panelTeam.add(btnSaveDriver_1);
 		
 		JSpinner spinnerAgeDriver = new JSpinner();
 		spinnerAgeDriver.setBounds(523, 273, 99, 26);
@@ -153,17 +156,13 @@ public class f1fenetre extends JFrame {
 		lblNewLabel_10.setBounds(441, 132, 61, 16);
 		panelTeam.add(lblNewLabel_10);
 		
-		JSpinner spinnerAgeDriver_1 = new JSpinner();
-		spinnerAgeDriver_1.setBounds(339, 127, 73, 26);
-		panelTeam.add(spinnerAgeDriver_1);
+		JSpinner spinnerAgeMember = new JSpinner();
+		spinnerAgeMember.setBounds(339, 127, 73, 26);
+		panelTeam.add(spinnerAgeMember);
 		
 		JLabel lblNewLabel_4_1 = new JLabel("Age");
 		lblNewLabel_4_1.setBounds(291, 132, 36, 16);
 		panelTeam.add(lblNewLabel_4_1);
-		
-		JButton btnNewButtonSaveMember = new JButton("Save");
-		btnNewButtonSaveMember.setBounds(130, 87, 83, 29);
-		panelTeam.add(btnNewButtonSaveMember);
 		
 		JPanel panelCar = new JPanel();
 		tabbedPane.addTab("Car", null, panelCar, null);
@@ -173,15 +172,10 @@ public class f1fenetre extends JFrame {
 		lblNewLabel_6.setBounds(6, 25, 61, 16);
 		panelCar.add(lblNewLabel_6);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(87, 25, 74, 16);
-		panelCar.add(textField_7);
-		textField_7.setColumns(10);
-		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(239, 25, 74, 16);
-		panelCar.add(textField_8);
+		textFieldMaterial = new JTextField();
+		textFieldMaterial.setBounds(87, 25, 74, 16);
+		panelCar.add(textFieldMaterial);
+		textFieldMaterial.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("Material");
 		lblNewLabel_7.setBounds(100, 6, 61, 16);
@@ -199,25 +193,15 @@ public class f1fenetre extends JFrame {
 		lblNewLabel_6_2.setBounds(6, 183, 61, 16);
 		panelCar.add(lblNewLabel_6_2);
 		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(87, 106, 74, 16);
-		panelCar.add(textField_9);
+		textFieldType = new JTextField();
+		textFieldType.setColumns(10);
+		textFieldType.setBounds(87, 106, 74, 16);
+		panelCar.add(textFieldType);
 		
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		textField_10.setBounds(239, 106, 74, 16);
-		panelCar.add(textField_10);
-		
-		textField_11 = new JTextField();
-		textField_11.setColumns(10);
-		textField_11.setBounds(87, 183, 74, 16);
-		panelCar.add(textField_11);
-		
-		textField_12 = new JTextField();
-		textField_12.setColumns(10);
-		textField_12.setBounds(239, 183, 74, 16);
-		panelCar.add(textField_12);
+		textFieldManufacturer = new JTextField();
+		textFieldManufacturer.setColumns(10);
+		textFieldManufacturer.setBounds(87, 183, 74, 16);
+		panelCar.add(textFieldManufacturer);
 		
 		JLabel lblNewLabel_7_2 = new JLabel("Type");
 		lblNewLabel_7_2.setBounds(105, 80, 61, 16);
@@ -227,7 +211,7 @@ public class f1fenetre extends JFrame {
 		lblNewLabel_7_3.setBounds(239, 80, 90, 16);
 		panelCar.add(lblNewLabel_7_3);
 		
-		JLabel lblNewLabel_7_4 = new JLabel("size");
+		JLabel lblNewLabel_7_4 = new JLabel("Size");
 		lblNewLabel_7_4.setBounds(262, 160, 61, 16);
 		panelCar.add(lblNewLabel_7_4);
 		
@@ -235,17 +219,17 @@ public class f1fenetre extends JFrame {
 		lblNewLabel_7_5.setBounds(87, 160, 97, 16);
 		panelCar.add(lblNewLabel_7_5);
 		
-		JButton btnNewButton = new JButton("Save");
-		btnNewButton.setBounds(381, 20, 117, 29);
-		panelCar.add(btnNewButton);
+		JSpinner spinnerWeight = new JSpinner();
+		spinnerWeight.setBounds(239, 20, 74, 26);
+		panelCar.add(spinnerWeight);
 		
-		JButton btnNewButton_1 = new JButton("Save");
-		btnNewButton_1.setBounds(381, 101, 117, 29);
-		panelCar.add(btnNewButton_1);
+		JSpinner spinnerHorsepower = new JSpinner();
+		spinnerHorsepower.setBounds(239, 101, 74, 26);
+		panelCar.add(spinnerHorsepower);
 		
-		JButton btnNewButton_2 = new JButton("Save");
-		btnNewButton_2.setBounds(381, 178, 117, 29);
-		panelCar.add(btnNewButton_2);
+		JSpinner spinnerSize = new JSpinner();
+		spinnerSize.setBounds(239, 178, 74, 26);
+		panelCar.add(spinnerSize);
 		
 		JPanel panelIndex = new JPanel();
 		tabbedPane.addTab("Index", null, panelIndex, null);
@@ -262,5 +246,95 @@ public class f1fenetre extends JFrame {
 		JTextPane textPaneIndex = new JTextPane();
 		textPaneIndex.setBounds(86, 78, 514, 272);
 		panelIndex.add(textPaneIndex);
+		
+		JButton btnEngine = new JButton("Save");
+		btnEngine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				engine1 = new Engine((int) spinnerHorsepower.getValue(), textFieldType.getText());
+				System.out.println("Type de moteur "+ textFieldType.getText()+ " Puissance "+  spinnerHorsepower.getValue());
+				textFieldType.setText("");
+				spinnerHorsepower.setValue(0);
+			}
+		});
+		btnEngine.setBounds(381, 101, 117, 29);
+		panelCar.add(btnEngine);
+		
+		JButton btnTires = new JButton("Save");
+		btnTires.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tires1 = new Tires(textFieldManufacturer.getText(), (int) spinnerSize.getValue());
+				System.out.println("Manufacturer "+ textFieldManufacturer.getText()+ " Taille "+  spinnerSize.getValue());
+				textFieldManufacturer.setText("");
+				spinnerSize.setValue(0);
+			}
+		});
+		btnTires.setBounds(381, 178, 117, 29);
+		panelCar.add(btnTires);
+		
+		JButton btnSaveBody = new JButton("Save");
+		btnSaveBody.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				body1 = new Body(textFieldMaterial.getText(), (int) spinnerWeight.getValue());
+				System.out.println("Matériau "+ textFieldMaterial.getText()+ " Masse "+  spinnerWeight.getValue());
+				textFieldMaterial.setText("");
+				spinnerWeight.setValue(0);
+				
+			}
+		});
+		btnSaveBody.setBounds(381, 20, 117, 29);
+		panelCar.add(btnSaveBody);
+		
+		textFieldMaterial = new JTextField();
+		textFieldMaterial.setColumns(10);
+		textFieldMaterial.setBounds(87, 25, 74, 16);
+		panelCar.add(textFieldMaterial);
+		
+		JButton btnSaveMember = new JButton("Save");
+		btnSaveMember.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				teammember1 = new TeamMember(textFieldNameMember.getText(), (int) spinnerAgeMember.getValue(), textFieldRoleMember.getText());
+				System.out.println("Member "+ textFieldNameMember.getText()+ " Age "+  spinnerAgeMember.getValue() + " Role " + textFieldRoleMember.getText());
+				textFieldNameMember.setText("");
+				spinnerAgeMember.setValue(0);
+				textFieldRoleMember.setText("");
+			}
+		});
+		btnSaveMember.setBounds(130, 87, 83, 29);
+		panelTeam.add(btnSaveMember);
+		
+		JButton btnSaveTeam = new JButton("Save");
+		btnSaveTeam.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ferrari = new Formula1Team(textFieldTeam.getText());
+				System.out.println("Team "+ textFieldTeam.getText());
+				textFieldTeam.setText("");
+			}
+		});
+		btnSaveTeam.setBounds(523, 36, 83, 29);
+		panelTeam.add(btnSaveTeam);
+		
+		JButton btnSaveDriver = new JButton("Save");
+		btnSaveDriver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				driver1 = new Driver(textFieldNameDriver.getText(), (int) spinnerAgeDriver.getValue(), ferrari);
+				System.out.println("Name "+ textFieldNameDriver.getText() + " Age " + spinnerAgeDriver.getValue());
+				spinnerAgeDriver.setValue(0);
+				textFieldNameDriver.setText("");
+			}
+		});
+		btnSaveDriver.setBounds(21, 273, 83, 29);
+		panelTeam.add(btnSaveDriver);
+		
+		JButton btnSaveMecanics = new JButton("Save");
+		btnSaveMecanics.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mechanic1 = new Mechanic(textFieldMecanics.getText(), textFieldSpeciality.getText());
+				System.out.println("Name "+ textFieldMecanics.getText() + " Speciality " + textFieldSpeciality.getText());
+				textFieldMecanics.setText("");
+				textFieldSpeciality.setText("");
+			}
+		});
+		btnSaveMecanics.setBounds(21, 352, 83, 29);
+		panelTeam.add(btnSaveMecanics);
 	}
 }
