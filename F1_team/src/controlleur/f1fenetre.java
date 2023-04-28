@@ -79,7 +79,7 @@ public class f1fenetre extends JFrame {
 		panelTeam.setLayout(null);
 		
 		textFieldMecanics = new JTextField();
-		textFieldMecanics.setBounds(225, 352, 130, 26);
+		textFieldMecanics.setBounds(175, 352, 130, 26);
 		panelTeam.add(textFieldMecanics);
 		textFieldMecanics.setColumns(10);
 		
@@ -106,7 +106,7 @@ public class f1fenetre extends JFrame {
 		panelTeam.add(lblNewLabel_2);
 		
 		textFieldSpeciality = new JTextField();
-		textFieldSpeciality.setBounds(514, 352, 130, 26);
+		textFieldSpeciality.setBounds(543, 352, 130, 26);
 		panelTeam.add(textFieldSpeciality);
 		textFieldSpeciality.setColumns(10);
 		
@@ -115,11 +115,11 @@ public class f1fenetre extends JFrame {
 		panelTeam.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Name");
-		lblNewLabel_5.setBounds(152, 357, 61, 16);
+		lblNewLabel_5.setBounds(116, 357, 61, 16);
 		panelTeam.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_5_1 = new JLabel("Speciality");
-		lblNewLabel_5_1.setBounds(418, 357, 61, 16);
+		lblNewLabel_5_1.setBounds(479, 357, 61, 16);
 		panelTeam.add(lblNewLabel_5_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("Team member");
@@ -231,21 +231,41 @@ public class f1fenetre extends JFrame {
 		spinnerSize.setBounds(239, 178, 74, 26);
 		panelCar.add(spinnerSize);
 		
+		JSpinner spinnerAgeMecha = new JSpinner();
+		spinnerAgeMecha.setBounds(356, 352, 99, 26);
+		panelTeam.add(spinnerAgeMecha);
+		
 		JPanel panelIndex = new JPanel();
 		tabbedPane.addTab("Index", null, panelIndex, null);
 		panelIndex.setLayout(null);
 		
-		JButton btnNewButtonAfficher = new JButton("Afficher");
-		btnNewButtonAfficher.setBounds(545, 6, 117, 29);
-		panelIndex.add(btnNewButtonAfficher);
-		
-		JComboBox comboBoxChxTeam = new JComboBox();
-		comboBoxChxTeam.setBounds(29, 7, 125, 27);
-		panelIndex.add(comboBoxChxTeam);
-		
 		JTextPane textPaneIndex = new JTextPane();
 		textPaneIndex.setBounds(86, 78, 514, 272);
 		panelIndex.add(textPaneIndex);
+		
+		JButton btnAfficher = new JButton("Print");
+		btnAfficher.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textPaneIndex.setText("Team: " + ferrari.getName() + "\r" 
+									+ "Driver: " + driver1.getName() + " Age: " + driver1.getAge() + "\r"
+									+ "TeamMember1: " + teammember1.getName() + " Age: " + teammember1.getAge() + " Role: " + teammember1.getRole() + "\r"
+									+ "Mechanic1: " + mechanic1.getName() + " Speciality: " + mechanic1.getSpecialty() + "\r"
+									+ "Engine1: " + engine1.getHorsepower() + " Type: " + engine1.getType() + "\r"
+									+ "Tires1: " + tires1.getManufacturer() + " Size: " + tires1.getSize() + "\r"
+									+ "Body1: " + body1.getMaterial() + "Weight: " + body1.getWeight() + "\r");
+			}
+		});
+		btnAfficher.setBounds(545, 6, 117, 29);
+		panelIndex.add(btnAfficher);
+		
+		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				driver1.write(driver1);
+			}
+		});
+		btnSave.setBounds(31, 6, 117, 29);
+		panelIndex.add(btnSave);
 		
 		JButton btnEngine = new JButton("Save");
 		btnEngine.addActionListener(new ActionListener() {
@@ -328,7 +348,7 @@ public class f1fenetre extends JFrame {
 		JButton btnSaveMecanics = new JButton("Save");
 		btnSaveMecanics.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mechanic1 = new Mechanic(textFieldMecanics.getText(), textFieldSpeciality.getText());
+				mechanic1 = new Mechanic(textFieldMecanics.getText(), (int) spinnerAgeMecha.getValue(), textFieldSpeciality.getText());
 				System.out.println("Name "+ textFieldMecanics.getText() + " Speciality " + textFieldSpeciality.getText());
 				textFieldMecanics.setText("");
 				textFieldSpeciality.setText("");
@@ -336,5 +356,10 @@ public class f1fenetre extends JFrame {
 		});
 		btnSaveMecanics.setBounds(21, 352, 83, 29);
 		panelTeam.add(btnSaveMecanics);
+		
+		JLabel lblNewLabel_4_2 = new JLabel("Age");
+		lblNewLabel_4_2.setBounds(330, 357, 42, 16);
+		panelTeam.add(lblNewLabel_4_2);
+		
 	}
 }

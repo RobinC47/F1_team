@@ -1,22 +1,13 @@
 package F1_team;
 
-public class Mechanic {
-    private String name;
+public class Mechanic extends Employee{
     private String specialty;
 
-    public Mechanic(String name, String specialty) {
-        this.name = name;
+    public Mechanic(String name, int age, String specialty) {
+        super(name, age);
         this.specialty = specialty;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    
     public String getSpecialty() {
         return specialty;
     }

@@ -32,8 +32,8 @@ public class Formula1TeamController {
         Car car = new Car(engine, tires, body);
         model.setCar(car);
         }
-    public void addMechanic(String name, String specialty) {
-        Mechanic mechanic = new Mechanic(name, specialty);
+    public void addMechanic(String name, int age,String specialty) {
+        Mechanic mechanic = new Mechanic(name, age, specialty);
         model.addMechanic(mechanic);
     }
 
